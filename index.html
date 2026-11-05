@@ -6,6 +6,6 @@ const installing=registration.installing||registration.waiting;
 if(installing&&installing.state!=='activated')await new Promise((resolve,reject)=>{installing.addEventListener('statechange',()=>{if(installing.state==='activated')resolve();if(installing.state==='redundant')reject(new Error('update failed'));});if(installing.state==='activated')resolve();});
 await navigator.serviceWorker.ready;
 if(!navigator.serviceWorker.controller)await new Promise(resolve=>{navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true});if(navigator.serviceWorker.controller)resolve();});
-location.replace('./portfolio.html');
+location.replace('./portfolio.html'+location.search+location.hash);
 }catch(error){document.querySelector('.ring').hidden=true;document.getElementById('status').textContent=error.message==='unsupported'?'请使用新版 Chrome、Edge 或 Safari 打开作品集。':'暂时无法打开作品集，请检查网络后重试。';document.getElementById('retry').hidden=false;}})();
 </script></body></html>
